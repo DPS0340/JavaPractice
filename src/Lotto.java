@@ -12,7 +12,11 @@ public class Lotto {
         this.every_number = every_number;
     }
     private void getone(ArrayList<Integer> arr) {
-        arr.add(-1,this.random.nextInt(this.every_number -1) + 1);
+        int selected = this.random.nextInt(this.every_number - 1) + 1;
+        while(arr.contains(selected)) {
+            selected = this.random.nextInt(this.every_number - 1) + 1;
+        }
+        arr.add(arr.size(), selected);
     }
     private void get(ArrayList<Integer> arr) {
         for(int i=0;i<this.choice_number;i++) {
@@ -20,18 +24,15 @@ public class Lotto {
         }
     }
     private boolean answerCheck () {
-        if (this.answer == this.mychoice) {
-            return true;
-        } else {
-            return false;
+        System.out.println(this.answer);
+        System.out.println(this.mychoice);
+        boolean flag = true;
+        for(int i=0; i<this.answer.size();i++) {
+            if(!this.answer.get(i).equals(this.mychoice.get(i))) {
+                flag = false;
+            }
         }
-    }
-    public String getmychoice () {
-        String result = "";
-        for(int i=0;i<this.mychoice.size();i++) {
-            result += this.mychoice.get(i) + " ";
-        }
-        return result;
+        return flag;
     }
     public boolean auto_roll() {
         this.answer = new ArrayList<Integer>();

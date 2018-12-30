@@ -1,6 +1,6 @@
 public class Lotto_run {
-    Lotto lotto = new Lotto(8, 45);
-    public void main(String[] args){
+    public static void main(String[] args){
+        Lotto lotto = new Lotto(8, 45);
         System.out.println(lotto.auto_roll());
     }
 }
